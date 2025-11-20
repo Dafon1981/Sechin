@@ -80,6 +80,22 @@
     .nav-quadrant h3 { font-size: clamp(1.2rem, 4vw, 2rem); font-weight: 800; margin-bottom: 10px; }
     .nav-quadrant p { font-size: clamp(0.8rem, 2vw, 1rem); }
 
+    /* --- ESTILOS PARA EL BOTÓN DE SERVICIOS (GIF) --- */
+    .nav-quadrant.service-button {
+        background-color: transparent;
+        padding: 10px; /* Reducir padding para dar más espacio al GIF */
+    }
+    .nav-quadrant.service-button img {
+        width: 80%; /* Aumentado para que sea más grande */
+        height: 80%; /* Aumentado para que sea más grande */
+        object-fit: contain;
+        transition: transform 0.3s;
+    }
+    .nav-quadrant.service-button:hover img {
+        transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+    }
+    /* --- FIN ESTILOS BOTÓN --- */
+
     #chat-log-layer {
         z-index: 4; top: auto; bottom: 0; height: 50%;
         padding: 20px; padding-bottom: 100px;
@@ -141,15 +157,17 @@
 <body>
 
     <div class="container">
-        <header id="app-header" onclick="goHome()"></header> <!-- TEXTO "Sechin" ELIMINADO -->
+        <header id="app-header" onclick="goHome()"></header>
         <div id="backup-layer" class="app-layer"></div>
         <div id="video-layer" class="app-layer">
             <video id="main-video" src="https://videos.pexels.com/video-files/3209828/3209828-hd_1280_720_25fps.mp4" muted></video>
             <button id="skip-intro-button" onclick="skipIntro( )">Saltar Intro</button>
         </div>
         <div id="navigation-layer" class="app-layer">
-            <div class="nav-quadrant" onclick="openModal('servicios')"><h3>Servicios</h3><p>Soluciones con IA</p></div>
-            <div class="nav-quadrant" onclick="openModal('portafolio')"><h3>Portafolio</h3><p>Nuestros Proyectos</p></div>
+            <div class="nav-quadrant service-button" onclick="openModal('servicios')">
+                <img src="https://github.com/Dafon1981/Sechin/raw/main/botonservicios.gif" alt="Botón de Servicios">
+            </div>
+            <div class="nav-quadrant" onclick="openModal('portafolio' )"><h3>Portafolio</h3><p>Nuestros Proyectos</p></div>
             <div class="nav-quadrant" onclick="openModal('nosotros')"><h3>Nosotros</h3><p>Conoce al Equipo</p></div>
             <div class="nav-quadrant" onclick="openModal('contacto')"><h3>Contacto</h3><p>Hablemos</p></div>
         </div>
@@ -224,7 +242,6 @@
             mainVideo.loop = true;
             mainVideo.play();
             
-            // SECUENCIA DE APARICIÓN RESTAURADA
             setTimeout(() => navigationLayer.classList.add('visible'), 500);
             setTimeout(() => inputBarLayer.classList.add('visible'), 1200);
         }
@@ -308,3 +325,4 @@
 
 </body>
 </html>
+
