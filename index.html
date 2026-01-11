@@ -15,12 +15,22 @@
         }
         .video-container {
             width: 100%; height: 100vh; scroll-snap-align: start; position: relative;
-            /* ¡CORRECCIÓN! Quitamos flexbox de aquí para evitar movimientos indeseados de elementos absolutos */
             overflow: hidden;
         }
+        
+        /* ================================================================= */
+        /* ¡CORRECCIÓN DEFINITIVA DEL VIDEO! */
+        /* ================================================================= */
         video {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            min-width: 105%; min-height: 105%; width: auto; height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%; /* Asegura que cubra el ancho */
+            min-height: 100%; /* Asegura que cubra el alto */
+            width: auto;
+            height: auto;
+            z-index: -1; /* Se pone detrás de los botones y el chat */
         }
 
         /* --- Logo Flotante --- */
@@ -28,10 +38,9 @@
             position: absolute; top: 15px; left: 15px; width: 80px; z-index: 30; opacity: 0.8;
         }
 
-        /* --- Botones Superiores con Fondo GIF --- */
+        /* --- Botones Superiores --- */
         .top-right-button {
             position: absolute; top: 25px; right: 15px; z-index: 20;
-            /* --- ¡AJUSTE DE TAMAÑO! --- */
             width: 100px; height: 75px;
             border: none; box-shadow: none;
             display: flex; justify-content: center; align-items: center;
@@ -43,15 +52,11 @@
         }
         .top-right-button:hover { transform: scale(1.05); }
 
-        /* --- Botón Inferior Central (Solo para Video 3) --- */
+        /* --- Botón Inferior Central --- */
         .bottom-center-button {
-            position: absolute;
-            /* --- ¡AJUSTE DE TAMAÑO Y POSICIÓN! --- */
-            bottom: 150px; /* Un poco más arriba */
-            left: 50%;
+            position: absolute; bottom: 150px; left: 50%;
             transform: translateX(-50%); z-index: 20;
-            width: 250px; /* Ligeramente más pequeño */
-            height: 200px;
+            width: 250px; height: 200px;
             border: none; box-shadow: none;
             display: flex; justify-content: center; align-items: center;
             text-decoration: none; color: white; font-weight: bold; font-size: 26px;
@@ -64,10 +69,7 @@
 
         /* --- Chat Flotante --- */
         .floating-chat-wrapper {
-            position: absolute;
-            /* --- ¡AJUSTE DE ALTURA! --- */
-            bottom: 50px; /* Subimos un poco más el chat */
-            left: 0; width: 100%; z-index: 10;
+            position: absolute; bottom: 50px; left: 0; width: 100%; z-index: 10;
             background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%);
             display: flex; flex-direction: column;
             padding: 15px; padding-top: 60px; box-sizing: border-box;
