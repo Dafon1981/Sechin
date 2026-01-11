@@ -29,37 +29,42 @@
         /* --- Botones Superiores con Fondo GIF --- */
         .top-right-button {
             position: absolute; top: 25px; right: 15px; z-index: 20;
-            /* --- ¡AJUSTE DE TAMAÑO Y BORDE! --- */
-            width: 110px; height: 65px;
-            border: none; /* Borde eliminado */
+            /* --- ¡AJUSTE DE TAMAÑO Y SOMBRA! --- */
+            width: 100px; height: 70px;
+            border: none;
+            box-shadow: none; /* Sombra eliminada */
             display: flex; justify-content: center; align-items: center;
             text-decoration: none; color: white; font-weight: bold; font-size: 14px;
             text-shadow: 1px 1px 3px #000;
             background-image: url('https://raw.githubusercontent.com/Dafon1981/Sechin/main/botonsechinbeta.gif' );
             background-size: cover; background-position: center;
             border-radius: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5); transition: transform 0.2s ease;
+            transition: transform 0.2s ease;
         }
         .top-right-button:hover { transform: scale(1.05); }
 
         /* --- Botón Inferior Central (Solo para Video 3) --- */
         .bottom-center-button {
-            position: absolute; bottom: 80px; left: 50%;
+            position: absolute;
+            /* --- ¡AJUSTE DE TAMAÑO, POSICIÓN Y SOMBRA! --- */
+            bottom: 120px; /* Más arriba */
+            left: 50%;
             transform: translateX(-50%); z-index: 20;
-            /* --- ¡AJUSTE DE TAMAÑO Y BORDE! --- */
-            width: 160px; height: 130px;
-            border: none; /* Borde eliminado */
+            width: 280px; /* Dos veces más grande */
+            height: 220px;
+            border: none;
+            box-shadow: none; /* Sombra eliminada */
             display: flex; justify-content: center; align-items: center;
-            text-decoration: none; color: white; font-weight: bold; font-size: 20px;
+            text-decoration: none; color: white; font-weight: bold; font-size: 28px; /* Texto más grande */
             text-shadow: 1px 1px 5px #000;
             background-image: url('https://raw.githubusercontent.com/Dafon1981/Sechin/main/botonsechinbeta.gif' );
             background-size: cover; background-position: center;
-            border-radius: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: transform 0.2s ease;
+            border-radius: 35px; /* Bordes más redondeados para el tamaño grande */
+            transition: transform 0.2s ease;
         }
         .bottom-center-button:hover { transform: scale(1.05); }
 
-        /* --- Chat Flotante --- */
+        /* --- Chat Flotante (sin cambios) --- */
         .floating-chat-wrapper {
             position: absolute; bottom: 30px; left: 0; width: 100%; z-index: 10;
             background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%);
@@ -84,7 +89,6 @@
         }
         .user-message { align-self: flex-end; background-color: rgba(0, 123, 255, 0.5); }
         .ia-message { align-self: flex-start; }
-        .thinking-message { font-style: italic; color: #ccc; }
         #chat-input {
             flex-grow: 1; background: transparent; border: none; color: white;
             font-size: 16px; padding: 10px; outline: none;
@@ -101,8 +105,8 @@
         /* --- Estilos para Pantallas más Grandes --- */
         @media (min-width: 768px) {
             .floating-logo { top: 20px; left: 20px; width: 120px; }
-            .top-right-button { top: 35px; right: 30px; width: 130px; height: 75px; font-size: 16px; }
-            .bottom-center-button { width: 200px; height: 160px; font-size: 24px; }
+            .top-right-button { top: 35px; right: 30px; width: 120px; height: 80px; font-size: 16px; }
+            .bottom-center-button { width: 320px; height: 250px; font-size: 32px; }
             .floating-chat-wrapper { padding: 30px; bottom: 50px; }
             .chat-input-container { max-width: 600px; margin: 0 auto; }
             #chat-messages { max-height: 35vh; }
@@ -138,7 +142,6 @@
 
     <script>
         // --- TODA LA LÓGICA DE JAVASCRIPT PERMANECE EXACTAMENTE IGUAL ---
-        // No es necesario cambiarla ya que los cambios fueron solo de CSS.
         const openRouterApiKey = 'sk-or-v1-..';
         const numeroTelefono = '51967188120';
         const mensajeBase = 'Hola, vengo de la app Sechin-Up y estoy interesado en sus servicios.';
