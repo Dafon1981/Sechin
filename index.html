@@ -15,27 +15,23 @@
         }
         .video-container {
             width: 100%; height: 100vh; scroll-snap-align: start; position: relative;
-            display: flex; justify-content: center; align-items: center; overflow: hidden; /* Oculta el exceso de video */
+            display: flex; justify-content: center; align-items: center; overflow: hidden;
         }
         video {
-            /* --- ¡AJUSTE DE ANCHO! --- */
-            /* Hacemos un ligero "zoom out" para que se vea más contenido en móviles */
-            min-width: 105%;
-            min-height: 105%;
-            width: auto;
-            height: auto;
-            object-fit: cover;
+            min-width: 105%; min-height: 105%; width: auto; height: auto; object-fit: cover;
         }
 
         /* --- Logo Flotante --- */
         .floating-logo {
-            position: absolute; top: 15px; left: 15px; width: 80px; z-index: 20; opacity: 0.8; transition: width 0.3s ease;
+            position: absolute; top: 15px; left: 15px; width: 80px; z-index: 30; opacity: 0.8;
         }
 
         /* --- Botones Superiores con Fondo GIF --- */
         .top-right-button {
             position: absolute; top: 25px; right: 15px; z-index: 20;
-            width: 100px; height: 45px; display: flex; justify-content: center; align-items: center;
+            /* --- ¡AJUSTE DE TAMAÑO! --- */
+            width: 120px; height: 60px;
+            display: flex; justify-content: center; align-items: center;
             text-decoration: none; color: white; font-weight: bold; font-size: 14px;
             text-shadow: 1px 1px 3px #000;
             background-image: url('https://raw.githubusercontent.com/Dafon1981/Sechin/main/botonsechinbeta.gif' );
@@ -45,23 +41,46 @@
         }
         .top-right-button:hover { transform: scale(1.05); }
 
+        /* ================================================================= */
+        /* ¡NUEVO! Botón Inferior Central (Solo para Video 3) */
+        /* ================================================================= */
+        .bottom-center-button {
+            position: absolute;
+            bottom: 80px; /* Posición vertical */
+            left: 50%;
+            transform: translateX(-50%); /* Centrado horizontal perfecto */
+            z-index: 20;
+            width: 180px; /* Mucho más ancho */
+            height: 120px; /* Más alto, casi cuadrado */
+            display: flex; justify-content: center; align-items: center;
+            text-decoration: none; color: white; font-weight: bold; font-size: 20px; /* Texto más grande */
+            text-shadow: 1px 1px 5px #000;
+            background-image: url('https://raw.githubusercontent.com/Dafon1981/Sechin/main/botonsechinbeta.gif' );
+            background-size: cover; background-position: center;
+            border-radius: 25px; border: 2px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: transform 0.2s ease;
+        }
+        .bottom-center-button:hover { transform: scale(1.05); }
+
         /* --- Chat Flotante --- */
         .floating-chat-wrapper {
-            position: absolute;
-            /* --- ¡AJUSTE DE ALTURA! --- */
-            bottom: 30px; /* Subimos todo el bloque del chat */
-            left: 0;
-            width: 100%;
-            z-index: 10;
+            position: absolute; bottom: 30px; left: 0; width: 100%; z-index: 10;
             background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%);
-            display: flex; flex-direction: column-reverse;
-            padding: 15px; padding-top: 60px; /* Más espacio arriba para que no se sienta apretado */
-            box-sizing: border-box;
+            display: flex; flex-direction: column; /* ¡CORRECCIÓN! Orden normal */
+            padding: 15px; padding-top: 60px; box-sizing: border-box;
         }
         #chat-messages {
-            max-height: 25vh; /* Ajustamos un poco la altura máxima */
-            overflow-y: auto; display: flex; flex-direction: column;
+            /* --- ¡AJUSTE DE LAYOUT! --- */
+            order: 1; /* Los mensajes van primero */
+            max-height: 25vh; overflow-y: auto; display: flex; flex-direction: column;
             gap: 10px; margin-bottom: 15px;
+        }
+        .chat-input-container {
+            order: 2; /* El input va después */
+            display: flex; align-items: center; gap: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px; padding: 5px 10px;
         }
         .message {
             padding: 8px 12px; border-radius: 15px; max-width: 80%;
@@ -72,13 +91,6 @@
         .user-message { align-self: flex-end; background-color: rgba(0, 123, 255, 0.5); }
         .ia-message { align-self: flex-start; }
         .thinking-message { font-style: italic; color: #ccc; }
-
-        .chat-input-container {
-            display: flex; align-items: center; gap: 10px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 25px; padding: 5px 10px;
-        }
         #chat-input {
             flex-grow: 1; background: transparent; border: none; color: white;
             font-size: 16px; padding: 10px; outline: none;
@@ -95,8 +107,9 @@
         /* --- Estilos para Pantallas más Grandes --- */
         @media (min-width: 768px) {
             .floating-logo { top: 20px; left: 20px; width: 120px; }
-            .top-right-button { top: 35px; right: 30px; width: 120px; height: 50px; font-size: 16px; }
-            .floating-chat-wrapper { padding: 30px; bottom: 50px; } /* También lo subimos en escritorio */
+            .top-right-button { top: 35px; right: 30px; width: 140px; height: 70px; font-size: 16px; }
+            .bottom-center-button { width: 220px; height: 150px; font-size: 24px; }
+            .floating-chat-wrapper { padding: 30px; bottom: 50px; }
             .chat-input-container { max-width: 600px; margin: 0 auto; }
             #chat-messages { max-height: 35vh; }
         }
@@ -125,7 +138,8 @@
 
         <div id="video3-container" class="video-container">
             <video autoplay muted loop playsinline src="https://raw.githubusercontent.com/Dafon1981/Sechin/main/video3sechin.mp4"></video>
-            <a href="https://cartasinteractivas-jpg.github.io/qrdinamico/" class="top-right-button" target="_blank">PÁGINA QR</a>
+            <!-- ¡NUEVO BOTÓN CENTRAL! -->
+            <a href="https://cartasinteractivas-jpg.github.io/qrdinamico/" class="bottom-center-button" target="_blank">PÁGINA QR</a>
         </div>
     </div>
 
@@ -144,26 +158,24 @@
         const chatMessages = document.getElementById('chat-messages');
         let isRecording = false;
 
-        // =================================================================
-        // ¡NUEVO! Lógica para el autodesplazamiento del primer video
-        // =================================================================
-        introVideo.onended = () => {
-            // Esta función se llama cuando el video termina de forma natural.
-            // Si el video está en loop, esto no funcionará, por eso quitamos el 'loop' del primer video.
-            console.log("Video de introducción terminado. Desplazando...");
-            videoSlider.scrollBy({
-                top: window.innerHeight, // Desplaza exactamente la altura de una pantalla
-                behavior: 'smooth' // Desplazamiento suave
-            });
-        };
-        // Como respaldo, si el evento 'onended' falla, usamos un temporizador de 12 segundos.
+        // --- LÓGICA DE AUTODESPLAZAMIENTO Y REINICIO ---
         setTimeout(() => {
-            // Solo se ejecuta si el scroll todavía está en la parte superior (no se ha movido)
             if (videoSlider.scrollTop < 100) {
-                console.log("Temporizador de 12s cumplido. Forzando desplazamiento...");
                 videoSlider.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
             }
-        }, 12000); // 12000 milisegundos = 12 segundos
+        }, 15000); // Aumentado a 15 segundos
+
+        // --- ¡NUEVO! Observador para reiniciar el video de intro ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Si el primer video vuelve a ser visible, lo reinicia.
+                    introVideo.currentTime = 0;
+                    introVideo.play();
+                }
+            });
+        }, { threshold: 0.5 }); // Se activa cuando el 50% del video es visible
+        observer.observe(document.getElementById('video1-container'));
 
         // --- LÓGICA DE WHATSAPP ---
         contactButton.href = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensajeBase )}`;
@@ -203,7 +215,6 @@
                 thinkingDiv.classList.remove('thinking-message');
             } catch (error) {
                 thinkingDiv.textContent = `Lo siento, hubo un error: ${error.message}`;
-                console.error("Error al contactar la IA:", error);
             }
         }
 
@@ -233,7 +244,7 @@
             };
             recognition.onstart = () => { isRecording = true; chatActionBtn.classList.add('recording'); chatInput.placeholder = 'Escuchando...'; };
             recognition.onend = () => { isRecording = false; chatActionBtn.classList.remove('recording'); chatInput.placeholder = 'Pregúntale a nuestro asistente...'; };
-            recognition.onerror = (event) => { console.error('Error de voz:', event.error); alert(`Error de micrófono: ${event.error}`); };
+            recognition.onerror = (event) => { console.error('Error de voz:', event.error); };
         }
         function startVoiceRecognition() {
             if (!recognition) { alert("Tu navegador no soporta el reconocimiento de voz."); return; }
